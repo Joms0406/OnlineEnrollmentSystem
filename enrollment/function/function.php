@@ -3,7 +3,7 @@
 function connect() {
     static $conn;
     if ($conn === NULL){ 
-        $conn = mysqli_connect('localhost','root','','enrollment');
+        $conn = mysqli_connect('localhost','root','','online_enrollment');
     }
     return $conn;
 }

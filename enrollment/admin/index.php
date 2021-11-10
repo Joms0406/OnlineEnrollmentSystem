@@ -45,12 +45,9 @@ $conn = connect();
                     <!-- /.card-header -->
                     <div class="card-body">
                        <?php
-  $sql = "SELECT * FROM students,enrollment,curriculum,courses,sections
-  WHERE students.student_id = enrollment.student_id
-  AND enrollment.section_id = sections.section_id
-  AND enrollment.curriculum_id = curriculum.curriculum_id
-  AND courses.course_id = curriculum.course_id
-  GROUP BY students.student_id";
+  $sql = "SELECT * FROM students a
+  JOIN requirements b ON a.student_id = b.student_id
+  ";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -59,19 +56,16 @@ $conn = connect();
       <tr>
       <th>Student ID</th>
       <th>Student Name</th>
-      <th>Course</th>
-      <th>Section</th>
       <th>Option</th>
       </tr>";
       // output data of each row
       while($row = $result->fetch_assoc()) {?>
         <td align="center"><?php echo $row["student_id"]; ?></td>
-        <td align="center"><?php echo $row["first_name"] . ' ' . $row['middle_name'] . '  ' . $row['last_name']; ?></td>
-        <td align="center"><?php echo $row["course_name"]; ?></td>
-        <td align="center"><?php echo $row["name"]; ?></td>
+        <td align="center"><?php if($row['middle_name'] != null){echo $row['first_name']. ' ' . $row['middle_name'] . '  ' . $row['last_name'];}else {echo $row['first_name']. '  ' . $row['last_name'];} ?></td>
+        <td align="center"><a href="<?php echo '../'.$row['path'] ?>" target="_blank">Open</a></td>
         <td>
           <div class="btn-group">
-            <a href="#" type="button" class="btn btn-success">
+            <a href="../mail.php?student_id=<?php echo $row['student_id']?>" type="button" class="btn btn-success">
               <i class="fas fa-edit"></i>
             </a>
             <a href="delete.php" type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this medicine?');" >
@@ -111,3 +105,8 @@ $conn = connect();
     });
   });
 </script>
+<?php
+
+
+
+?>

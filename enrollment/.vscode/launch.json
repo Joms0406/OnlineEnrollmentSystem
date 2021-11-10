@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost/ENROLLMENT/admission.php",
+            "url": "http://localhost/ENROLLMENT/basic-info.php",
             "webRoot": "${workspaceFolder}"
         }
     ]
