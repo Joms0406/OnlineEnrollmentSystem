@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost/ENROLLMENT/basic-info.php",
+            "url": "http://localhost/ENROLLMENT/admin/print-card.php",
             "webRoot": "${workspaceFolder}"
         }
     ]

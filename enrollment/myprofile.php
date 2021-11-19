@@ -11,12 +11,23 @@ $_SESSION['student_id'] = $current_id;
 ob_start(); 
 // Establish Database Connection
 $conn = connect();
-    $profilesql = "SELECT * FROM students,enrollment,curriculum,courses,yearlevel 
-    WHERE students.student_id = $current_id 
-    AND students.student_id = enrollment.student_id
-    AND enrollment.curriculum_id = curriculum.curriculum_id
-    AND courses.course_id = curriculum.course_id
-    AND yearlevel.year_level_id = curriculum.year_level_id ";
+$profilesql = "SELECT * FROM students a
+    JOIN enrollment b ON a.student_id = b.student_id
+    JOIN curriculums c ON c.curriculum_id = b.curriculum_id
+    JOIN curriculum_details d ON d.curriculum_id = c.curriculum_id
+    JOIN subjects e ON e.subject_id = d.subject_id
+    JOIN courses f ON f.course_id = d.course_id
+    JOIN yearlevel g ON g.yearlevel_id = d.yearlevel_id
+    JOIN schoolyear h ON h.schoolyear_id =  d.schoolyear_id
+    JOIN semester i ON i.semester_id = d.semester_id
+    WHERE a.student_id = $current_id";
+
+if($profilesql == null){
+    
+    $profilesql = "SELECT * FROM students a
+    WHERE student_id = $current_id";
+    $profilequery = mysqli_query($conn, $profilesql);
+}
 $profilequery = mysqli_query($conn, $profilesql);
 $row = mysqli_fetch_assoc($profilequery);
 ?>

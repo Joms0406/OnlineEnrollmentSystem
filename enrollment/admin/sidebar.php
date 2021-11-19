@@ -1,3 +1,4 @@
+<body class="hold-transition sidebar-mini layout-fixed">
 <aside class="main-sidebar bg-success text-dark elevation-4">
   <a href="index3.html" class="brand-link">
     <img src="../img/Logo.png" alt="UMLogo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -22,7 +23,6 @@
             </p>
           </a>
         </li>
-        <br></br>
         <li class="nav-item">
           <a href="admin1st.php" class="nav-link">
             <i class="nav-icon fas fa-users text-dark"></i>

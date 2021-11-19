@@ -53,22 +53,25 @@ $conn = connect();
   if ($result->num_rows > 0) {
       echo 
       "<table id='example2' class='table table-bordered table-hover'>
-      <tr>
-      <th>Student ID</th>
-      <th>Student Name</th>
-      <th>Option</th>
-      </tr>";
-      // output data of each row
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Option</th>
+          <th>Button</th>
+        </tr>
+      </thead>";
       while($row = $result->fetch_assoc()) {?>
         <td align="center"><?php echo $row["student_id"]; ?></td>
         <td align="center"><?php if($row['middle_name'] != null){echo $row['first_name']. ' ' . $row['middle_name'] . '  ' . $row['last_name'];}else {echo $row['first_name']. '  ' . $row['last_name'];} ?></td>
-        <td align="center"><a href="<?php echo '../'.$row['path'] ?>" target="_blank">Open</a></td>
+        <td align="center"><a href="admin1st.php" rel="noopener" target="_blank">Open</a></td>
         <td>
           <div class="btn-group">
-            <a href="../mail.php?student_id=<?php echo $row['student_id']?>" type="button" class="btn btn-success">
+            <a href="../mail.php?student_id=<?php echo $row['student_id']?>" type="button" class="btn btn-success"> 
+            <!-- data-toggle="modal" data-target="#modal-default" -->
               <i class="fas fa-edit"></i>
             </a>
-            <a href="delete.php" type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this medicine?');" >
+            <a href="delete.php" type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this student?');" >
               <i class="fas fa-trash"></i>
             </a>
           </div>
@@ -86,6 +89,27 @@ $conn = connect();
                     <!-- /.card-body -->
                   </div>
                   <!-- /.card -->
+                  <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Email Confirmation</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>One fine body&hellip;</p>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                  <!-- /.modal -->
 <?php include 'footer.php';
 ?>
 <script>
@@ -105,8 +129,3 @@ $conn = connect();
     });
   });
 </script>
-<?php
-
-
-
-?>

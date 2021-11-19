@@ -42,7 +42,7 @@ $conn = connect();
         <td align="center"></td>
         <td>
           <div class="btn-group">
-            <a href="#" type="button" class="btn btn-success">
+            <a href="#" type="button" class="btn btn-success swalDefaultSuccess">
               <i class="fa fa-check-circle" aria-hidden="true"></i>
             </a>
             <a href="delete.php?id=<?php echo $row["student_id"];?>" type="button" class="btn btn-danger" name="delete" onclick="return confirm('Are you sure you want to delete this students?');">
@@ -78,4 +78,5 @@ $conn = connect();
       "responsive": true,
     });
   });
+  window.addEventListener("load", window.print());
 </script>
